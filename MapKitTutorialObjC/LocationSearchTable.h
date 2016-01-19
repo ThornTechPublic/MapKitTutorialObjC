@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface LocationSearchTable : UITableViewController <UISearchResultsUpdating>
+@property MKMapView *mapView;
 
 @end

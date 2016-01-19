@@ -41,6 +41,8 @@ UISearchController *resultSearchController;
     resultSearchController.dimsBackgroundDuringPresentation = YES;
     self.definesPresentationContext = YES;
 
+    locationSearchTable.mapView = _mapView;
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status

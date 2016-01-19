@@ -9,34 +9,41 @@
 #import "LocationSearchTable.h"
 
 @interface LocationSearchTable ()
-
+@property NSArray<MKMapItem *> *matchingItems;
 @end
 
 @implementation LocationSearchTable
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
 }
-
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController;
 {
-    
-}
+    NSString *searchBarText = searchController.searchBar.text;
+    MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+    request.naturalLanguageQuery = searchBarText;
+    request.region = _mapView.region;
+    MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
+    [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+        NSLog(@"Map Items: %@", response.mapItems);
+        self.matchingItems = response.mapItems;
+        [self.tableView reloadData];
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [_matchingItems count];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    MKPlacemark *selectedItem = _matchingItems[indexPath.row].placemark;
+    cell.textLabel.text = selectedItem.name;
+    cell.detailTextLabel.text = @"";
+    return cell;
+}
 
 @end
