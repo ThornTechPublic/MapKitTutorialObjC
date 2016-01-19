@@ -27,7 +27,6 @@
     request.region = _mapView.region;
     MKLocalSearch *search = [[MKLocalSearch alloc] initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-        NSLog(@"Map Items: %@", response.mapItems);
         self.matchingItems = response.mapItems;
         [self.tableView reloadData];
     }];

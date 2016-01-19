@@ -13,8 +13,7 @@
 - (void)dropPinZoomIn:(MKPlacemark *)placemark;
 @end
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate, HandleMapSearch>
-
+@interface ViewController : UIViewController <CLLocationManagerDelegate, HandleMapSearch, MKMapViewDelegate>
 
 @end
 

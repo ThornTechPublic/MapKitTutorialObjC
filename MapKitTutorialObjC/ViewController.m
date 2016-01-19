@@ -75,17 +75,50 @@ MKPlacemark *selectedPin;
     selectedPin = placemark;
     // clear existing pins
     [_mapView removeAnnotations:(_mapView.annotations)];
-    MKPointAnnotation *annotation;
+    MKPointAnnotation *annotation = [MKPointAnnotation new];
     annotation.coordinate = placemark.coordinate;
     annotation.title = placemark.name;
     annotation.subtitle = [NSString stringWithFormat:@"%@ %@",
                            (placemark.locality == nil ? @"" : placemark.locality),
                            (placemark.administrativeArea == nil ? @"" : placemark.administrativeArea)
                            ];
-    [_mapView addAnnotation:(annotation)];
+    [_mapView addAnnotation:annotation];
     MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
     MKCoordinateRegion region = MKCoordinateRegionMake(placemark.coordinate, span);
     [_mapView setRegion:region animated:true];
+}
+
+- (nullable MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        //return nil so map view draws "blue dot" for standard user location
+        return nil;
+    }
+    
+    static NSString *reuseId = @"pin";
+
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    if (pinView == nil) {
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        pinView.enabled = YES;
+        pinView.canShowCallout = YES;
+        pinView.tintColor = [UIColor orangeColor];
+    } else {
+        pinView.annotation = annotation;
+    }
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [button setBackgroundImage:[UIImage imageNamed:@"car"]
+                      forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(getDirections) forControlEvents:UIControlEventTouchUpInside];
+    pinView.leftCalloutAccessoryView = button;
+
+    return pinView;
+}
+
+- (void)getDirections {
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:selectedPin];
+    [mapItem openInMapsWithLaunchOptions:(@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving})];
 }
 
 @end
