@@ -37,13 +37,36 @@
     return [_matchingItems count];
 }
 
+- (NSString *)parseAddress:(MKPlacemark *)selectedItem {
+    // put a space between "4" and "Melrose Place"
+    NSString *firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? @" " : @"";
+    // put a comma between street and city/state
+    NSString *comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? @", " : @"";
+    // put a space between "Washington" and "DC"
+    NSString *secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? @" " : @"";
+    NSString *addressLine = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",
+                             (selectedItem.subThoroughfare == nil ? @"" : selectedItem.subThoroughfare),
+                             firstSpace,
+                             (selectedItem.thoroughfare == nil ? @"" : selectedItem.thoroughfare),
+                             comma,
+                             // city
+                             (selectedItem.locality == nil ? @"" : selectedItem.locality),
+                             secondSpace,
+                             // state
+                             (selectedItem.administrativeArea == nil ? @"" : selectedItem.administrativeArea)
+                             ];
+    return addressLine;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     MKPlacemark *selectedItem = _matchingItems[indexPath.row].placemark;
     cell.textLabel.text = selectedItem.name;
-    cell.detailTextLabel.text = @"";
+    cell.detailTextLabel.text = [self parseAddress:selectedItem];
     return cell;
 }
+
+
 
 @end
