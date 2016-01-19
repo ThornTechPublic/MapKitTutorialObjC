@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate>
+@protocol HandleMapSearch <NSObject>
+- (void)dropPinZoomIn:(MKPlacemark *)placemark;
+@end
+
+@interface ViewController : UIViewController <CLLocationManagerDelegate, HandleMapSearch>
 
 
 @end

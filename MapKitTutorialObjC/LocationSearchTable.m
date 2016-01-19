@@ -10,6 +10,7 @@
 
 @interface LocationSearchTable ()
 @property NSArray<MKMapItem *> *matchingItems;
+
 @end
 
 @implementation LocationSearchTable
@@ -29,7 +30,6 @@
         NSLog(@"Map Items: %@", response.mapItems);
         self.matchingItems = response.mapItems;
         [self.tableView reloadData];
-
     }];
 }
 
@@ -67,6 +67,11 @@
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MKPlacemark *selectedItem = _matchingItems[indexPath.row].placemark;
+    [_handleMapSearchDelegate dropPinZoomIn:(selectedItem)];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

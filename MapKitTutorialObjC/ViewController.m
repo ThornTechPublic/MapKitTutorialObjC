@@ -18,6 +18,7 @@
 
 CLLocationManager *locationManager;
 UISearchController *resultSearchController;
+MKPlacemark *selectedPin;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,6 +44,8 @@ UISearchController *resultSearchController;
 
     locationSearchTable.mapView = _mapView;
 
+    locationSearchTable.handleMapSearchDelegate = self;
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
@@ -66,5 +69,23 @@ UISearchController *resultSearchController;
     [_mapView setRegion:region animated:true];
 }
 
+- (void)dropPinZoomIn:(MKPlacemark *)placemark
+{
+    // cache the pin
+    selectedPin = placemark;
+    // clear existing pins
+    [_mapView removeAnnotations:(_mapView.annotations)];
+    MKPointAnnotation *annotation;
+    annotation.coordinate = placemark.coordinate;
+    annotation.title = placemark.name;
+    annotation.subtitle = [NSString stringWithFormat:@"%@ %@",
+                           (placemark.locality == nil ? @"" : placemark.locality),
+                           (placemark.administrativeArea == nil ? @"" : placemark.administrativeArea)
+                           ];
+    [_mapView addAnnotation:(annotation)];
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
+    MKCoordinateRegion region = MKCoordinateRegionMake(placemark.coordinate, span);
+    [_mapView setRegion:region animated:true];
+}
 
 @end

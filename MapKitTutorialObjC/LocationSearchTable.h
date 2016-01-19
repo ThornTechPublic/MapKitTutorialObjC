@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "ViewController.h"
 
 @interface LocationSearchTable : UITableViewController <UISearchResultsUpdating>
 @property MKMapView *mapView;
+@property id <HandleMapSearch>handleMapSearchDelegate;
 
 @end
