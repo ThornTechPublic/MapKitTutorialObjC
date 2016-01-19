@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -41,7 +42,9 @@ CLLocationManager *locationManager;
      didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     CLLocation *location = [locations firstObject];
-    NSLog(@"location: %@", location);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.05, 0.05);
+    MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, span);
+    [_mapView setRegion:region animated:true];
 }
 
 
