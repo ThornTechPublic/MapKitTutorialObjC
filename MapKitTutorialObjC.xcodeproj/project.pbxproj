@@ -13,7 +13,6 @@
 		FC47B5E51C4E87E8007AB88A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC47B5E31C4E87E8007AB88A /* Main.storyboard */; };
 		FC47B5E71C4E87E8007AB88A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC47B5E61C4E87E8007AB88A /* Assets.xcassets */; };
 		FC47B5EA1C4E87E8007AB88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC47B5E81C4E87E8007AB88A /* LaunchScreen.storyboard */; };
-		FC47B5F51C4E9D3B007AB88A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC47B5F41C4E9D3B007AB88A /* MapKit.framework */; };
 		FC47B5FE1C4E9E73007AB88A /* LocationSearchTable.m in Sources */ = {isa = PBXBuildFile; fileRef = FC47B5FD1C4E9E73007AB88A /* LocationSearchTable.m */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC47B5F51C4E9D3B007AB88A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

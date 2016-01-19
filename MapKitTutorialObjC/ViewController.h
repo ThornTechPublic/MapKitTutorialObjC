@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
+@import MapKit;
 
 @protocol HandleMapSearch <NSObject>
 - (void)dropPinZoomIn:(MKPlacemark *)placemark;

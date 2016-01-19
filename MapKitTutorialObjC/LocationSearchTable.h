@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
+@import MapKit;
 #import "ViewController.h"
 
 @interface LocationSearchTable : UITableViewController <UISearchResultsUpdating>
