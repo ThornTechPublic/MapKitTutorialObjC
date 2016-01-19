@@ -14,6 +14,7 @@
 		FC47B5E71C4E87E8007AB88A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC47B5E61C4E87E8007AB88A /* Assets.xcassets */; };
 		FC47B5EA1C4E87E8007AB88A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC47B5E81C4E87E8007AB88A /* LaunchScreen.storyboard */; };
 		FC47B5F51C4E9D3B007AB88A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC47B5F41C4E9D3B007AB88A /* MapKit.framework */; };
+		FC47B5FE1C4E9E73007AB88A /* LocationSearchTable.m in Sources */ = {isa = PBXBuildFile; fileRef = FC47B5FD1C4E9E73007AB88A /* LocationSearchTable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		FC47B5E91C4E87E8007AB88A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC47B5EB1C4E87E8007AB88A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC47B5F41C4E9D3B007AB88A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FC47B5FC1C4E9E73007AB88A /* LocationSearchTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchTable.h; sourceTree = "<group>"; };
+		FC47B5FD1C4E9E73007AB88A /* LocationSearchTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchTable.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 				FC47B5DE1C4E87E8007AB88A /* AppDelegate.m */,
 				FC47B5E01C4E87E8007AB88A /* ViewController.h */,
 				FC47B5E11C4E87E8007AB88A /* ViewController.m */,
+				FC47B5FC1C4E9E73007AB88A /* LocationSearchTable.h */,
+				FC47B5FD1C4E9E73007AB88A /* LocationSearchTable.m */,
 				FC47B5E31C4E87E8007AB88A /* Main.storyboard */,
 				FC47B5E61C4E87E8007AB88A /* Assets.xcassets */,
 				FC47B5E81C4E87E8007AB88A /* LaunchScreen.storyboard */,
@@ -156,6 +161,7 @@
 				FC47B5E21C4E87E8007AB88A /* ViewController.m in Sources */,
 				FC47B5DF1C4E87E8007AB88A /* AppDelegate.m in Sources */,
 				FC47B5DC1C4E87E8007AB88A /* main.m in Sources */,
+				FC47B5FE1C4E9E73007AB88A /* LocationSearchTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +310,7 @@
 				FC47B5F01C4E87E8007AB88A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
